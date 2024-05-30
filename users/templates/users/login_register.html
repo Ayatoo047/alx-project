@@ -1,0 +1,56 @@
+{% extends "head.html" %}
+
+{% block content %}
+
+<style>
+    input{
+    margin-top: 10px;
+    border: 2px solid;
+    /* margin: auto; */
+    width: 90%; 
+    padding: 10px;
+    border-radius: 25px;
+} 
+</style>
+
+
+
+
+
+{% if page == 'login' %}
+<div class="loginform">
+    <h4 >WELCOME BACK BLOGGER</h4>
+
+    <form action="" method="POST" style="margin-top: 10px;">
+
+        {% csrf_token %}
+        <input class="input-login" type="text" name="username" placeholder="input username">
+        <input class="input-login" type="password" name="password" placeholder="input password">
+        <input class="input-login" type="submit" value="Submit" id="btn">
+    </form>
+
+    <div><p>Have not register? <a href="{% url 'register' %}"> Sign Up</a></p></div>
+</div>
+
+
+
+{% else%}
+<div class="loginform">
+    <h4>CREATE AN ACCOUNT</h4>
+
+    <p style="margin-top: 10px; margin-bottom: 10px; color: blue;">Make sure to use an Alphanumeric password</p>
+        <form action="" method="POST" >
+            {% csrf_token %}
+            {% for field in form %}
+            {{field.label}}
+            {{field}}
+            {% endfor %}
+            <input type="submit" value="Submit">
+        </form>
+            
+    <p>Havent register? <a href="{% url 'register' %}"> Sign Up</a></p>
+</div>
+
+{% endif %}
+
+{% endblock %}
