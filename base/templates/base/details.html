@@ -1,0 +1,48 @@
+{% extends "head.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div class="detail content" >
+        <span>
+            <h2 id='bp-title'>
+                {{blogs.title}}
+            </h2>
+            <small style="margin-left: 10px;">created: {{blogs.created|timesince}} ago</small>
+            <hr>
+            <span >
+               {{blogs.body}}
+            </span>
+        </span>
+        <!-- <button class="delete" data-doc="<%= blogs._id%>">delete</button> -->
+
+        <!-- <button value="0" method="POST" name="like"> like</button> -->  
+    </div>
+
+
+
+<div class="commentlist" id="comment-list" style="padding-left: 5%; ">
+    <h1>COMMENTS</h1>
+    <hr style="margin-bottom: 10px;" >
+    {% for message in comments %}
+    <div class="comment" id="commentdiv">
+        <div class="comment__details" >
+            <a href="#" style="margin-top: 10px; ">{{message.owner.username}}</a>
+            <p class="comment__info" style="padding-bottom: 1rem; ">{{message.body|linebreaks}}</p>
+        </div>
+    </div>
+    <hr style="margin-bottom: 10px; ">
+    {% endfor %}
+    {% if request.user.is_authenticated %}
+    <div style="padding-top: 1rem;">
+        <form class="createBlog" method="POST" id='textform'>
+            {% csrf_token %}
+            <input type="text" name="body" id="textinput" required placeholder="WRITE A COMMENT">
+            <input id='sbmt-btn' type="submit" name="Send">
+        </form>
+    </div>
+    {% endif %}
+</div>
+
+<script src="{% static 'js/websocket.js' %}"></script>
+{% endblock %}

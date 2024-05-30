@@ -1,0 +1,34 @@
+{% extends "head.html" %}
+
+{% block content %}
+
+
+<div class="home content">
+
+  <div style="margin-bottom: 25px;">
+    <form action="" method="get">
+      <input type="text" class="search-box" name="search_query"
+      value="{{search_query}}" placeholder="Search by Author, Title or Post Content">
+      <input type="submit" value="Search" id="sbmt-btn">
+    </form>
+  </div>
+
+      <h1>All Blogs</h1>
+      {% for blog in blogs %}
+      <a class="single" href="{% url 'blogpost' blog.id %}"
+      <small>By {{blog.owner}} </small>
+      
+      <h3>{{blog.title}}</h3><br>
+      <span>{{blog.snippet}}</span>
+      <h6>{{blog.created}}</h6>
+      {% if request.user == blog.owner %}
+      <span style="margin-left: 20px;"><a href="{% url 'update' blog.id %}">Edit</a></span> 
+      <span style="margin-left: 20px;"><a href="{% url 'delete' blog.id %}">Delete</a></span>
+      {% endif %}
+      <hr>
+      {% endfor %}
+    </a>
+  </div>
+    
+{% include "paginator.html" with queryset=blogs custom_range=custom_range %}
+{%  endblock %}
