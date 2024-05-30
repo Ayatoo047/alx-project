@@ -1,0 +1,17 @@
+{% extends "core.html" %}
+{% block content %}
+
+
+<div class="container">
+    <div class="text-container">
+        HELLO, WELCOME TO POSTIER.
+        START YOUR BLOGGING JOURNEY WITH US <br>
+        IN JUST FEW CLICKS!. ARE YOU READY?
+    </div>
+    <div class="buttons">
+        <a href="{% url 'createinstance' %}"><button type="button" class="btn btn-primary btn-lg">Get Started</button></a>
+        <a href="{% url 'core_login' %}"><button type="button" class="btn btn-primary btn-lg">Login</button></a>
+        {% comment %} <a href="{% url 'core_login' %}"></a><button type="button" class="btn btn-secondary btn-lg">Login</button></a> {% endcomment %}
+    </div>
+</div>  
+{% endblock content %}

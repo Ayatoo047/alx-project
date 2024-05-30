@@ -1,0 +1,15 @@
+{% extends "core.html" %}
+
+{% block content %}
+
+<h1>WELCOME {{tenant_profile.tenant|upper}}</h1>
+
+<div class="container">
+    <div class="row">
+      <div class="col-9"><h1>ACTION BAR</h1></div>
+      <div class="col-4">ACTIVITIES<br><a href="http://{{tenant_profile.tenant}}.localhost:8000">Go to Instance</a></div>
+      <div class="col-6" style="margin-left: 20px; background: grey"><H6>NUMBERS OF USER</H6><br>{{users_count}}</div>
+    </div>
+  </div>
+
+{% endblock content %}
