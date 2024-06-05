@@ -52,8 +52,12 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
-              <a class="nav-link" href="#">Features</a>
-              <a class="nav-link" href="#">Pricing</a>
+              {% if request.user.is_authenticated %}
+              <a class="nav-link" href="{% url 'core_login' %}">Login</a>
+              {% else %}
+              <a class="nav-link" href="{% url 'core_logout' %}">Login</a>
+              {% endif %}
+              <a class="nav-link" href="{% url 'createinstance' %}">Create Instance</a>
               <a class="nav-link disabled" aria-disabled="true">Disabled</a>
             </div>
           </div>

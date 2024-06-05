@@ -22,6 +22,7 @@ def searchBlogs(request):
     
     return blogs, search_query
 
+
 def paginateBlogs(request, blogs, results):
     """
         This function paginates the first page of the first page, it shows the number

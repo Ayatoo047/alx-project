@@ -1,2 +1,5 @@
 django
+django-tenants
+django-channels
+channels==3.0.5
 python-dotenv

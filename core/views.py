@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.shortcuts import render
+from base.models import Blog
 from core.models import TenantProfile
 from .models import Client, Domain
 from django.http import HttpResponse
@@ -15,8 +16,8 @@ from django_tenants.utils import schema_context
 
 
 def index(request):
-    if request.user.is_authenticated:
-        return redirect('admindash')
+    # if request.user.is_authenticated:
+    #     return redirect('admindash')
 
     return render(request, 'index.html')
 
@@ -124,9 +125,9 @@ def adminDash(request):
     print(tenant_profile.tenant)
     with schema_context(tenant_profile.tenant.lower()):
         users_count = User.objects.count()
-        # print(users_count)
+        blogs_count = Blog.objects.count()
     
-    context = {'tenant_profile': tenant_profile,
+    context = {'tenant_profile': tenant_profile, 'blog_count': blogs_count,
                'tenant_user': tenant_user, 'users_count':users_count,}
     return render(request, 'dashboard.html', context)
 
